@@ -1,0 +1,21 @@
+---
+name:  tableone
+title: Table One
+jrs:   '1.1'
+
+items:
+
+    - name:  todo
+      title: To Do
+      type:  Html
+
+    - name:  text1
+      title: ''
+      type:  Preformatted
+      clearWith:
+          - vars
+
+
+refs: tableone
+
+...
