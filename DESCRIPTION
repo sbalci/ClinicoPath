@@ -24,17 +24,13 @@ Depends:
     R (>= 3.6.0)
 Imports: 
     dplyr,
-    explore,
     finalfit,
-    forcats,
     ggalluvial,
     ggplot2,
-    statsExpressions,
     ggstatsplot,
     glue,
     janitor,
     jmvcore (>= 0.8.5),
-    jsonlite,
     knitr,
     purrr,
     R6,
@@ -44,9 +40,7 @@ Imports:
     tableone,
     tangram,
     tibble,
-    tidyr
-Suggests:
-    rmarkdown,
+    tidyr,
     kableExtra
 Remotes:
     easystats/insight,
@@ -55,8 +49,6 @@ Remotes:
     easystats/modelbased,
     easystats/effectsize,
     easystats/report
-VignetteBuilder: 
-    knitr
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
