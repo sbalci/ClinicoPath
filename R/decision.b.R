@@ -116,7 +116,7 @@ decisionClass <- if (requireNamespace('jmvcore')) R6::R6Class(
             results_caret <- caret::confusionMatrix(conf_table, positive = "Positive")
 
 
-            # self$results$text2$setContent(results_caret)
+            self$results$text2$setContent(results_caret)
 
 
 matrixdetails <- list(
