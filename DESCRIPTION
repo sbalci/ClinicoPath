@@ -1,8 +1,8 @@
 Type: Package
 Package: ClinicoPath
 Title: Analysis for Clinicopathological Research
-Version: 0.0.1.0006
-Date: 2020-04-26
+Version: 0.0.2
+Date: 2020-05-03
 Authors@R: 
     person(given = "Serdar",
            family = "Balci",
@@ -38,11 +38,13 @@ Imports:
     survival,
     survminer,
     tableone,
-    tangram,
     tibble,
     tidyr,
-    kableExtra
+    kableExtra,
+    irr,
+    caret
 Remotes:
+    spgarbet/tangram@0.3.2,
     easystats/insight,
     easystats/bayestestR,
     easystats/parameters,

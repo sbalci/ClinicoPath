@@ -1,12 +1,12 @@
 ---
 title: Common Analysis for Clinicopathological Research
 name: ClinicoPath
-version: 0.0.1.0006
+version: 0.0.2
 jms: '1.0'
 authors:
   - Serdar Balci
 maintainer: Serdar Balci <drserdarbalci@gmail.com>
-date: '2020-04-26'
+date: '2020-05-03'
 type: R
 description: >-
   ClinicoPath help researchers to generate natural language summaries of their
@@ -63,6 +63,25 @@ analyses:
     menuGroup: ClinicoPath
     menuSubgroup: Survival
     menuTitle: Odds Ratio Table and Plot
+  - title: Interrater Reliability
+    name: agreement
+    ns: ClinicoPath
+    menuGroup: ClinicoPath
+    menuSubgroup: Agreement
+    menuTitle: Interrater Reliability
+    description: Function for Interrater Reliability.
+  - title: Medical Decision
+    name: decision
+    ns: ClinicoPath
+    menuGroup: ClinicoPath
+    menuSubgroup: Decision
+    menuTitle: Medical Decision
+  - title: Decision Calculator
+    name: decisioncalculator
+    ns: ClinicoPath
+    menuGroup: ClinicoPath
+    menuSubgroup: Decision
+    menuTitle: Decision Calculator
 datasets:
   - name: histopathology including analysis
     path: histopathologyanalysis.omv
@@ -100,6 +119,6 @@ datasets:
     tags:
       - Classification
 usesNative: true
-minApp: 1.2.8
+minApp: 1.3.0
 
 ...

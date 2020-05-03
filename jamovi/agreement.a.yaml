@@ -1,0 +1,57 @@
+---
+name:  agreement
+title: Interrater Reliability
+menuGroup: ClinicoPath
+menuSubgroup: Agreement
+version: '1.0.0'
+jas: '1.2'
+
+description:
+    main: Function for Interrater Reliability.
+    R:
+        dontrun: false
+        usage: |
+            # example will be added
+
+
+options:
+    - name: data
+      type: Data
+
+    - name: vars
+      title: Raters
+      type: Variables
+      suggested: [ ordinal, nominal ]
+      permitted: [ factor ]
+      description:
+          R: >
+            a string naming the variable from `data` that contains the
+            diagnosis given by the observer, variable can be categorical, ordinal or numeric
+
+
+    - name: sft
+      title: Show Frequency Table
+      type: Bool
+      default: false
+
+
+
+    - name: wght
+      title: Use Weighted Kappa (Effects only with Ordinal Variables)
+      type: List
+      options:
+        - title: Unweighted
+          name: unweighted
+        - title: Squared
+          name: squared
+        - title: Equal/Linear
+          name: equal
+      default: unweighted
+
+    - name: exct
+      title: Use Exact Kappa (Effects only >=3 Variables)
+      type: Bool
+      default: false
+
+
+...
