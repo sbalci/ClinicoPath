@@ -1,3 +1,10 @@
+#' Medical Decision Making
+#'
+#' @return
+#' @export
+#'
+#' 
+#'
 #' @importFrom R6 R6Class
 #' @import jmvcore
 #' @import dplyr

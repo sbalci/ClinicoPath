@@ -101,8 +101,15 @@ decisionBase <- if (requireNamespace('jmvcore')) R6::R6Class(
 
 #' Medical Decision
 #'
+#' Function for Medical Decision Analysis. Sensitivity, specificity, positive 
+#' predictive value, negative predictive value.
 #' 
-#' @param data .
+#'
+#' @examples
+#' \dontrun{
+#' # example will be added
+#'}
+#' @param data The data as a data frame.
 #' @param gold .
 #' @param goldPositive .
 #' @param newtest .

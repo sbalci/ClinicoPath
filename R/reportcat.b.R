@@ -1,3 +1,10 @@
+#' Summary of Categorical Variables
+#'
+#' @return
+#' @export
+#'
+#' 
+#'
 #' @importFrom R6 R6Class
 #' @import jmvcore
 #'

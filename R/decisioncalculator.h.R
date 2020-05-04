@@ -7,9 +7,11 @@ decisioncalculatorOptions <- if (requireNamespace('jmvcore')) R6::R6Class(
     public = list(
         initialize = function(
             TP = 90,
-            TN = 30,
-            FP = 20,
-            FN = 80, ...) {
+            TN = 80,
+            FP = 30,
+            FN = 20,
+            pp = FALSE,
+            pprob = 0.3, ...) {
 
             super$initialize(
                 package='ClinicoPath',
@@ -24,31 +26,47 @@ decisioncalculatorOptions <- if (requireNamespace('jmvcore')) R6::R6Class(
             private$..TN <- jmvcore::OptionNumber$new(
                 "TN",
                 TN,
-                default=30)
+                default=80)
             private$..FP <- jmvcore::OptionNumber$new(
                 "FP",
                 FP,
-                default=20)
+                default=30)
             private$..FN <- jmvcore::OptionNumber$new(
                 "FN",
                 FN,
-                default=80)
+                default=20)
+            private$..pp <- jmvcore::OptionBool$new(
+                "pp",
+                pp,
+                default=FALSE)
+            private$..pprob <- jmvcore::OptionNumber$new(
+                "pprob",
+                pprob,
+                default=0.3,
+                min=0.01,
+                max=0.99)
 
             self$.addOption(private$..TP)
             self$.addOption(private$..TN)
             self$.addOption(private$..FP)
             self$.addOption(private$..FN)
+            self$.addOption(private$..pp)
+            self$.addOption(private$..pprob)
         }),
     active = list(
         TP = function() private$..TP$value,
         TN = function() private$..TN$value,
         FP = function() private$..FP$value,
-        FN = function() private$..FN$value),
+        FN = function() private$..FN$value,
+        pp = function() private$..pp$value,
+        pprob = function() private$..pprob$value),
     private = list(
         ..TP = NA,
         ..TN = NA,
         ..FP = NA,
-        ..FN = NA)
+        ..FN = NA,
+        ..pp = NA,
+        ..pprob = NA)
 )
 
 decisioncalculatorResults <- if (requireNamespace('jmvcore')) R6::R6Class(
@@ -66,7 +84,10 @@ decisioncalculatorResults <- if (requireNamespace('jmvcore')) R6::R6Class(
             self$add(jmvcore::Preformatted$new(
                 options=options,
                 name="text2",
-                title="Decision Calculator"))}))
+                title="Decision Calculator",
+                clearWith=list(
+                    "pp",
+                    "pprob")))}))
 
 decisioncalculatorBase <- if (requireNamespace('jmvcore')) R6::R6Class(
     "decisioncalculatorBase",
@@ -90,11 +111,19 @@ decisioncalculatorBase <- if (requireNamespace('jmvcore')) R6::R6Class(
 
 #' Decision Calculator
 #'
-#' 
+#' Function for Medical Decision Calculator.
+#'
+#' @examples
+#' \dontrun{
+#' # example will be added
+#'}
 #' @param TP .
 #' @param TN .
 #' @param FP .
 #' @param FN .
+#' @param pp .
+#' @param pprob Prior probability (disease prevelance in the community).
+#'   Requires a value between 0.01 and 0.99, default null.
 #' @return A results object containing:
 #' \tabular{llllll}{
 #'   \code{results$text2} \tab \tab \tab \tab \tab a preformatted \cr
@@ -103,9 +132,11 @@ decisioncalculatorBase <- if (requireNamespace('jmvcore')) R6::R6Class(
 #' @export
 decisioncalculator <- function(
     TP = 90,
-    TN = 30,
-    FP = 20,
-    FN = 80) {
+    TN = 80,
+    FP = 30,
+    FN = 20,
+    pp = FALSE,
+    pprob = 0.3) {
 
     if ( ! requireNamespace('jmvcore'))
         stop('decisioncalculator requires jmvcore to be installed (restart may be required)')
@@ -115,7 +146,9 @@ decisioncalculator <- function(
         TP = TP,
         TN = TN,
         FP = FP,
-        FN = FN)
+        FN = FN,
+        pp = pp,
+        pprob = pprob)
 
     analysis <- decisioncalculatorClass$new(
         options = options,

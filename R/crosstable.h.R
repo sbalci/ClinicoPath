@@ -79,7 +79,12 @@ crosstableBase <- if (requireNamespace('jmvcore')) R6::R6Class(
 #' CrossTables
 #'
 #' Function for making Cross Tables.
-#' @param data .
+#'
+#' @examples
+#' \dontrun{
+#' # example will be added
+#'}
+#' @param data The data as a data frame.
 #' @param vars .
 #' @param group variable in the column
 #' @return A results object containing:
