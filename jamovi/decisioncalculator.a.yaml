@@ -43,14 +43,14 @@ options:
     - name: pprob
       title: Prior Probability (prevelance)
       type: Number
-      default: 0.30
-      min: 0.01
-      max: 0.99
+      default: 0.300
+      min: 0.001
+      max: 0.999
       description:
           ui: >
             Prior probability (disease prevelance in the community).
-            Requires a value between 0.01 and 0.99, default null.
+            Requires a value between 0.001 and 0.999, default 0.300.
           R: >
             Prior probability (disease prevelance in the community).
-            Requires a value between 0.01 and 0.99, default null.
+            Requires a value between 0.001 and 0.999, default 0.300.
 ...

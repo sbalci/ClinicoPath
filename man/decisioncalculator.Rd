@@ -18,7 +18,7 @@ decisioncalculator(TP = 90, TN = 80, FP = 30, FN = 20, pp = FALSE, pprob = 0.3)
 \item{pp}{.}
 
 \item{pprob}{Prior probability (disease prevelance in the community).
-Requires a value between 0.01 and 0.99, default null.}
+Requires a value between 0.001 and 0.999, default 0.300.}
 }
 \value{
 A results object containing:

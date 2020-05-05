@@ -43,8 +43,8 @@ decisioncalculatorOptions <- if (requireNamespace('jmvcore')) R6::R6Class(
                 "pprob",
                 pprob,
                 default=0.3,
-                min=0.01,
-                max=0.99)
+                min=0.001,
+                max=0.999)
 
             self$.addOption(private$..TP)
             self$.addOption(private$..TN)
@@ -123,7 +123,7 @@ decisioncalculatorBase <- if (requireNamespace('jmvcore')) R6::R6Class(
 #' @param FN .
 #' @param pp .
 #' @param pprob Prior probability (disease prevelance in the community).
-#'   Requires a value between 0.01 and 0.99, default null.
+#'   Requires a value between 0.001 and 0.999, default 0.300.
 #' @return A results object containing:
 #' \tabular{llllll}{
 #'   \code{results$text2} \tab \tab \tab \tab \tab a preformatted \cr
