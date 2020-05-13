@@ -42,7 +42,8 @@ Imports:
     tidyr,
     kableExtra,
     irr,
-    caret
+    caret,
+    gtsummary
 Remotes:
     spgarbet/tangram@0.3.2,
     easystats/insight,
