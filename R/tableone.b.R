@@ -47,7 +47,13 @@ tableoneClass <- if (requireNamespace("jmvcore")) R6::R6Class("tableoneClass",
             varsName <- self$options$vars
 
             data <- jmvcore::select(self$data, c(varsName))
-            data <- jmvcore::naOmit(data)
+
+
+            # Exclude NA
+
+            excl <- self$options$excl
+
+            if (excl) {data <- jmvcore::naOmit(data)}
 
 
             # Select Style ----
@@ -74,11 +80,52 @@ tableoneClass <- if (requireNamespace("jmvcore")) R6::R6Class("tableoneClass",
                 self$results$tablestyle2$setContent(mytable)
 
 
+            } else if (sty == "t3") {
+
+
+                formula <- jmvcore::constructFormula(terms = self$options$vars)
+                formula <- paste('~', formula)
+                formula <- as.formula(formula)
+                mytable <- arsenal::tableby(formula = formula,
+                                            data = data,
+                                            total = TRUE,
+                                            digits = 1,
+                                            digits.count = 1
+                )
+                mytable <- summary(mytable, text = "html")
+
+                mytable <- kableExtra::kable(mytable, format = "html",
+                                               digits = 1,
+                                               escape = FALSE)
+
+                self$results$tablestyle3$setContent(mytable)
+
+
+            }  else if (sty == "t4") {
+
+
+
+                tablelist <- list()
+
+                for (i in 1:length(varsName)) {
+
+                    var <- varsName[i]
+
+                    table <- data %>%
+                        janitor::tabyl(dat = ., var) %>%
+                        janitor::adorn_totals("row") %>%
+                        janitor::adorn_pct_formatting(dat = .)
+
+                    tablelist[[var]] <- table
+
+                }
+
+                mytable <- tablelist
+
+                self$results$tablestyle4$setContent(mytable)
+
+
             }
-
-
-            # Results ----
-
 
 
     }

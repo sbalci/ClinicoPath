@@ -255,4 +255,25 @@
         `year`=2019, 
         `title`="rpart.plot: Plot 'rpart' Models: An Enhanced Version of 'plot.rpart'", 
         `publisher`="[R package]. Retrieved from https://CRAN.R-project.org/package=rpart.plot", 
-        `url`="https://CRAN.R-project.org/package=rpart.plot"))
+        `url`="https://CRAN.R-project.org/package=rpart.plot"), 
+    `gtsummary`=list(
+        `type`="software", 
+        `author`="Daniel D. Sjoberg, Margie Hannum, Karissa Whiting and Emily C. Zabor", 
+        `year`=2020, 
+        `title`="gtsummary: Presentation-Ready Data Summary and Analytic Result Tables", 
+        `publisher`="[R package]. Retrieved from https://CRAN.R-project.org/package=gtsummary", 
+        `url`="https://CRAN.R-project.org/package=gtsummary"), 
+    `rmngb`=list(
+        `type`="software", 
+        `author`="Antoine Filipovic Pierucci", 
+        `year`=2014, 
+        `title`="rmngb: Miscellaneous Collection of Functions for Medical Data Analysis", 
+        `publisher`="[R package]. Retrieved from https://CRAN.R-project.org/package=rmngb", 
+        `url`="https://CRAN.R-project.org/package=rmngb"), 
+    `RVAideMemoire`=list(
+        `type`="software", 
+        `author`="Maxime Herv\u00E9", 
+        `year`=2020, 
+        `title`="RVAideMemoire: Testing and Plotting Procedures for Biostatistics", 
+        `publisher`="[R package]. Retrieved from https://CRAN.R-project.org/package=RVAideMemoire", 
+        `url`="https://CRAN.R-project.org/package=RVAideMemoire"))

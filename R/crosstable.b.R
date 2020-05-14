@@ -16,8 +16,6 @@ crosstableClass <- if (requireNamespace('jmvcore')) R6::R6Class(
         .run = function() {
 
 
-
-
             if ( is.null(self$options$vars) || is.null(self$options$group) )
                 return()
 

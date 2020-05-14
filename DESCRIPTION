@@ -2,7 +2,7 @@ Type: Package
 Package: ClinicoPath
 Title: Analysis for Clinicopathological Research
 Version: 0.0.2
-Date: 2020-05-03
+Date: 2020-05-14
 Authors@R: 
     person(given = "Serdar",
            family = "Balci",
@@ -43,7 +43,8 @@ Imports:
     kableExtra,
     irr,
     caret,
-    gtsummary
+    gtsummary,
+    arsenal
 Remotes:
     spgarbet/tangram@0.3.2,
     easystats/insight,
