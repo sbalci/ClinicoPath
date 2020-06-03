@@ -2,4 +2,4 @@
 
 module only files of ClinicoPathJamoviModule
 
-See https://github.com/sbalci/ClinicoPathJamoviModule
+See https://sbalci.github.io/ClinicoPathJamoviModule/
