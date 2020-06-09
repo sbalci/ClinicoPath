@@ -1,8 +1,4 @@
-#' Cross Table
-#'
-#' @return
-#' @export
-#'
+#' @title Cross Table
 #'
 #'
 #' @importFrom R6 R6Class
@@ -13,118 +9,178 @@ crosstableClass <- if (requireNamespace('jmvcore')) R6::R6Class(
     "crosstableClass",
     inherit = crosstableBase,
     private = list(
+
         .run = function() {
 
 
-            if ( is.null(self$options$vars) || is.null(self$options$group) )
+            if (is.null(self$options$vars) || is.null(self$options$group)) {
+
+                # ToDo Message ----
+
+                todo <- glue::glue("
+                <br>
+                21:02
+                <br>Welcome to ClinicoPath.<br>
+                This tool will help you form a Cross Table.<br>
+                The functions select hypothesis tests automatically. You may see different results with different tables. Please verify your data distribution and appropriateness of the test accordingly. You may find Statkat module useful.<br>
+                Please cite the packages and jamovi using references below.<br><hr>")
+
+                html <- self$results$todo
+                html$setContent(todo)
                 return()
 
+            } else {
 
-            # TODO
+                todo <- ""
+                html <- self$results$todo
+                html$setContent(todo)
 
-            # todo <- glue::glue(
-            #     "This Module is still under development
-            #     -
-            #     -
-            #     "
-            # )
-            #
-            # self$results$todo$setContent(todo)
+                # Error Message ----
+
+                if (nrow(self$data) == 0) stop("Data contains no (complete) rows")
+
+                # Prepare Data ----
+
+            mydata <- self$data
+
+            # formulaR <- jmvcore::constructFormula(terms = self$options$vars)
+            # formulaL <- jmvcore::constructFormula(terms = self$options$group)
+
+            formula <- jmvcore::constructFormula(
+                terms = self$options$vars,
+                dep = self$options$group)
 
 
-            # write explanation for the function
-
-
-            if (nrow(self$data) == 0)
-                stop('Data contains no (complete) rows')
-
-
-            formulaR <- jmvcore::constructFormula(terms = self$options$vars)
-
-            formulaL <- jmvcore::constructFormula(terms = self$options$group)
-
-            formula <- paste(formulaL, '~', formulaR)
-
+            # formula <- paste(formulaL, '~', formulaR)
             formula <- as.formula(formula)
 
-            # Arsenal Table
-            # table1 <- arsenal::tableby(formula, self$data)
-            # results1 <- summary(table1)
-            # results1 <- knitr::kable(results1,
-            #              row.names = FALSE,
-            #              align = c('l', 'l', 'r', 'r', 'r', 'r'),
-            #              format = "html") %>%
-            #     kableExtra::kable_styling(kable_input = .,
-            #                               bootstrap_options = "striped",
-            #                               full_width = F,
-            #                               position = "left")
-            # self$results$text1$setContent(results1)
-
-            # Tangram Table
-            # table2 <-
-            #     tangram::tangram(formula, self$data
-            #     )
-            # results2 <- table2
-            # self$results$text2$setContent(results2)
-
-            # Tangram Table
 
 
+            # Exclude NA ----
 
-            style <- self$options$style
+            excl <- self$options$excl
 
-
-            table3 <-
-                tangram::html5(
-                    tangram::tangram(
-                        formula, self$data),
-                    fragment = TRUE,
-                    inline = style,
-                    caption = paste0("Cross Table for Dependent ", self$options$group),
-                    id = "tbl3")
-
-            results3 <- table3
-
-            self$results$text3$setContent(results3)
+            if (excl) {mydata <- jmvcore::naOmit(mydata)}
 
 
-            # Tangram Table Lancet
+            # Select Style ----
 
-            # table4 <-
-            #     tangram::html5(
-            #         tangram::tangram(
-            #             formula, self$data),
-            #         fragment = TRUE,
-            #         inline = "lancet.css",
-            #         caption = "Cross Table Lancet Style",
-            #         id = "tbl4")
-            # results4 <- table4
-            # self$results$text4$setContent(results4)
+            sty <- self$options$sty
 
+            if (sty == "arsenal") {
 
+                # Arsenal Table ----
 
-            # Table FinalFit
-            # https://finalfit.org/articles/tables_gallery.html#cross-tables
-            # myvars <- jmvcore::decomposeFormula(formula = formulaR)
-            # myvars <- unlist(myvars)
-            # self$data %>%
-            #     summary_factorlist(dependent = self$options$group,
-            #                        explanatory = myvars,
-            #                        # column = TRUE,
-            #                        total_col = TRUE,
-            #                        p = TRUE,
-            #                        add_dependent_label = TRUE,
-            #                        na_include = FALSE
-            #                        # catTest = catTestfisher
-            # ) -> table5
-            # knitr::kable(table5, row.names = FALSE, align = c('l', 'l', 'r', 'r', 'r'))
-            # results5 <- table5
-            # self$results$text5$setContent(results5)
+                tablearsenal <- arsenal::tableby(formula = formula,
+                                                 data = mydata,
+                                                 total = TRUE,
+                                                 digits = 1,
+                                                 digits.count = 1
+                )
 
-            # table2 <-
-            #     tangram::html5(tangram::tangram("drug ~ bili[2] + albumin + stage::Categorical + protime + sex + age + spiders", pbc),
-            #       fragment=TRUE, inline="nejm.css", caption = "HTML5 Table NEJM Style", id="tbl3")
+                tablearsenal <- summary(tablearsenal, text = 'html')
 
 
+                tablearsenal <- kableExtra::kable(tablearsenal,
+                                             format = "html",
+                                             digits = 1,
+                                             escape = FALSE)
+
+
+                self$results$tablestyle1$setContent(tablearsenal)
+
+
+            } else if (sty == "finalfit") {
+
+                # FinalFit ----
+                # https://finalfit.org/articles/tables_gallery.html#cross-tables
+
+
+                myvars <- jmvcore::composeTerm(components = self$options$vars)
+
+                myvars <- jmvcore::decomposeTerm(term = myvars)
+
+                # myvars <- jmvcore::decomposeFormula(formula = self$options$vars)
+                # myvars <- unlist(myvars)
+
+                mydata %>%
+                    finalfit::summary_factorlist(
+                        .data = .,
+                        dependent = self$options$group,
+                                       explanatory = myvars,
+                                       # column = TRUE,
+                                       total_col = TRUE,
+                                       p = TRUE,
+                                       add_dependent_label = TRUE,
+                                       na_include = FALSE
+                                       # catTest = catTestfisher
+                ) -> tablefinalfit
+
+
+                tablefinalfit <- kableExtra::kable(tablefinalfit,
+                                                  format = "html",
+                                                  digits = 1,
+                                                  escape = FALSE)
+
+
+                self$results$tablestyle2$setContent(tablefinalfit)
+
+
+            } else if (sty == "gtsummary") {
+
+
+                # gtsummary ----
+                # http://www.danieldsjoberg.com/gtsummary/articles/gallery.html
+
+
+                tablegtsummary <-
+                    gtsummary::tbl_summary(data = mydata,
+                                           by = self$options$group) %>%
+                    gtsummary::modify_header(stat_by =
+                                                 gt::md("**{level}** N =  {n} ({style_percent(p)}%)")) %>%
+                    gtsummary::add_n(x = .) %>%
+                    gtsummary::bold_labels(x = .) %>%
+                    gtsummary::add_p(x = .,
+                                     pvalue_fun =
+                                         purrr::partial(
+                                             gtsummary::style_pvalue,
+                                             digits = 2)
+                                     ) %>%
+                    gtsummary::add_q()
+
+                tablegtsummary <-
+                    gtsummary::as_kable_extra(tablegtsummary)
+
+
+                self$results$tablestyle3$setContent(tablegtsummary)
+
+
+            } else if (sty %in% c("nejm", "lancet", "hmisc")) {
+
+                sty <- jmvcore::composeTerm(components = self$options$sty)
+
+
+                # tangram ----
+
+
+                tabletangram <-
+                    tangram::html5(
+                        tangram::tangram(
+                            formula,
+                            mydata,
+                            transform=tangram::hmisc,
+                            id = "tbl3"
+                        ),
+                        fragment = TRUE,
+                        style = sty,
+                        caption = paste0(
+                            "Cross Table for Dependent ",
+                            self$options$group),
+                        id = "tbl3")
+
+                self$results$tablestyle4$setContent(tabletangram)
+
+}
+}
         })
 )

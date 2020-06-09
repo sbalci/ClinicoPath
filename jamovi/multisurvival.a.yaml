@@ -1,8 +1,9 @@
 ---
 name:  multisurvival
 title: Multivariate Survival Analysis
-menuGroup: ClinicoPath
-menuSubgroup: Survival
+menuGroup: Survival
+menuSubgroup: ClinicoPath Survival
+menuSubtitle: 'Cox-regression'
 version: '1.0.0'
 jas: '1.2'
 
@@ -43,5 +44,17 @@ options:
     #       Select Event (Death, Recurrence)
     #   type: Level
     #   variable: (outcome)
+
+    - name: sty
+      title: Plot Style
+      type: List
+      options:
+        - title: finalfit
+          name: t1
+        - title: ggstatsplot
+          name: t2
+      default: t1
+
+
 
 ...

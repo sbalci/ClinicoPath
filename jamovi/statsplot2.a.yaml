@@ -1,8 +1,8 @@
 ---
 name:  statsplot2
 title: Graphs and Plots
-menuGroup: ClinicoPath
-menuSubgroup: Comparisons
+menuGroup: JJStatsPlot
+menuSubgroup: Variable Type Based Graphs and Plots
 version: '1.0.0'
 jas: '1.2'
 
@@ -30,6 +30,12 @@ options:
       title: 'Grouping (x-axis, 2nd measurement)'
       type: Variable
 
+
+    - name: grvar
+      title: 'Split by: (Optional)'
+      type: Variable
+
+
     - name: direction
       title: Measurement Type
       type: List
@@ -55,6 +61,29 @@ options:
       default: p
       description:
           R: select distribution type (parametric or nonparametric)
+
+    - name: alluvsty
+      title: Alluvial Style (for repeated categorical)
+      type: List
+      options:
+        - title: ggalluvial
+          name: t1
+        - title: easyalluvial
+          name: t2
+      default: t1
+
+
+    - name: excl
+      title: Exclude Missing (NA)
+      type: Bool
+      default: true
+
+
+    # - name: pairw
+    #   title: Pairwise Comparison
+    #   type: Bool
+    #   default: false
+
 
 
     # - name: typex

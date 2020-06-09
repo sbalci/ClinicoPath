@@ -1,6 +1,6 @@
 ---
 name:  statsplot2
-title: Graphs and Plots
+title: Variable Type Based Graphs and Plots
 jrs:   '1.1'
 
 items:
@@ -13,6 +13,9 @@ items:
           - group
           - direction
           - distribution
+          - excl
+          - grvar
+          # - pairw
 
     # - name:  text1
     #   title: Variable Types
@@ -34,16 +37,20 @@ items:
           - group
           - direction
           - distribution
+          - excl
+          - grvar
+          # - pairw
+
 
     # - name:  text5
     #   title: Stats Expression Formula
     #   type:  Preformatted
 
-    - title: GGStatsPlot
+    - title: Variable Type Based Graphs and Plots
       name: plot
       type: Image
-      width:  600
-      height: 450
+      width:  800
+      height: 600
       renderFun: .plot
       requiresData: true
       clearWith:
@@ -51,10 +58,15 @@ items:
           - group
           - direction
           - distribution
+          - alluvsty
+          - excl
+          - grvar
+          # - pairw
 
 
 refs:
     - ggstatsplot
     - ggalluvial
+    - easyalluvial
 
 ...

@@ -3,6 +3,9 @@
 \name{reportcatClass}
 \alias{reportcatClass}
 \title{Summary of Categorical Variables}
+\value{
+Text
+}
 \description{
 Summary of Categorical Variables
 

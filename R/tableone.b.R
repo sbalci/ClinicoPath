@@ -1,10 +1,9 @@
-#' Table One
+#' @title Table One
 #'
 #' @return Table
 #'
 #' @importFrom R6 R6Class
 #' @importFrom jmvcore toNumeric
-#' @importFrom tableone CreateTableOne
 #'
 
 
@@ -28,8 +27,12 @@ tableoneClass <- if (requireNamespace("jmvcore")) R6::R6Class("tableoneClass",
                           This tool will help you form a Table One, which is almost always used in clinicopathological research manuscripts.
                           <br><br>
                           Select the 'Variables' you want to include in the table. Numeric, Ordinal, and Categorical variables are allowed.
+                          Select the 'Table Style' for different package outputs.
                           <br><br>
-                          This tool uses tableone package. Please cite the packages and jamovi using references below.
+                          Missing values are excluded by default. You may reinclude them.
+                          Please note that excluded cases are removed from other variables as well.
+                          <br><br>
+                          Please cite the packages and jamovi using references below.
                           "
 
             html <- self$results$todo
@@ -60,27 +63,30 @@ tableoneClass <- if (requireNamespace("jmvcore")) R6::R6Class("tableoneClass",
 
             sty <- self$options$sty
 
+            # tableone ----
+
             if (sty == "t1") {
 
-            # tableone ----
 
             mytable <- tableone::CreateTableOne(data = data)
 
             self$results$tablestyle1$setContent(mytable)
 
+                # gtsummary ----
 
             } else if (sty == "t2") {
 
 
-            # gtsummary ----
 
                 mytable <- gtsummary::tbl_summary(data = data)
                 mytable <- gtsummary::as_kable_extra(mytable)
 
                 self$results$tablestyle2$setContent(mytable)
 
+            # arsenal ----
 
             } else if (sty == "t3") {
+
 
 
                 formula <- jmvcore::constructFormula(terms = self$options$vars)
@@ -90,8 +96,10 @@ tableoneClass <- if (requireNamespace("jmvcore")) R6::R6Class("tableoneClass",
                                             data = data,
                                             total = TRUE,
                                             digits = 1,
-                                            digits.count = 1
+                                            digits.count = 0,
+                                            digits.pct = 1
                 )
+
                 mytable <- summary(mytable, text = "html")
 
                 mytable <- kableExtra::kable(mytable, format = "html",
@@ -104,6 +112,7 @@ tableoneClass <- if (requireNamespace("jmvcore")) R6::R6Class("tableoneClass",
             }  else if (sty == "t4") {
 
 
+                # janitor ----
 
                 tablelist <- list()
 

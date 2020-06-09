@@ -276,4 +276,39 @@
         `year`=2020, 
         `title`="RVAideMemoire: Testing and Plotting Procedures for Biostatistics", 
         `publisher`="[R package]. Retrieved from https://CRAN.R-project.org/package=RVAideMemoire", 
-        `url`="https://CRAN.R-project.org/package=RVAideMemoire"))
+        `url`="https://CRAN.R-project.org/package=RVAideMemoire"), 
+    `easyalluvial`=list(
+        `type`="software", 
+        `author`="Bjoern Koneswarakantha", 
+        `year`=2019, 
+        `title`="easyalluvial: Generate Alluvial Plots with a Single Line of Code.", 
+        `publisher`="[R package]. Retrieved from https://CRAN.R-project.org/package=easyalluvial", 
+        `url`="https://CRAN.R-project.org/package=easyalluvial"), 
+    `parcats`=list(
+        `type`="software", 
+        `author`="Bjoern Koneswarakantha", 
+        `year`=2019, 
+        `title`="parcats: Interactive Parallel Categories Diagrams for 'easyalluvial'", 
+        `publisher`="[R package]. Retrieved from https://CRAN.R-project.org/package=parcats", 
+        `url`="https://CRAN.R-project.org/package=parcats"), 
+    `plotROC`=list(
+        `type`="software", 
+        `author`="Michael C. Sachs", 
+        `year`=2017, 
+        `title`="plotROC: A Tool for Plotting ROC Curves.Journal of Statistical Software, Code Snippets, 79(2), 1-19. doi:10.18637/jss.v079.c02", 
+        `publisher`="[R package]. Retrieved from https://CRAN.R-project.org/package=plotROC", 
+        `url`="https://CRAN.R-project.org/package=plotROC"), 
+    `RGraphGallery`=list(
+        `type`="website", 
+        `author`="Holtz Yan", 
+        `year`=2020, 
+        `title`="The R Graph Gallery", 
+        `publisher`="A website that displays hundreds of R charts https://www.r-graph-gallery.com", 
+        `url`="https://github.com/holtzy/R-graph-gallery"), 
+    `hrbrthemes`=list(
+        `type`="software", 
+        `author`="Bob Rudis", 
+        `year`=2020, 
+        `title`="hrbrthemes: Additional Themes, Theme Components and Utilities for 'ggplot2'.", 
+        `publisher`="[R package]. Retrieved from https://CRAN.R-project.org/package=hrbrthemes", 
+        `url`="https://CRAN.R-project.org/package=hrbrthemes"))

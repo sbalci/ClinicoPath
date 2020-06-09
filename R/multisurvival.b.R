@@ -1,16 +1,8 @@
-#' Multivariate Survival Analysis
+#' @title Multivariate Survival Analysis
 #'
-
-
-#'
-#' 
 #'
 #' @importFrom R6 R6Class
 #' @import jmvcore
-#' @import finalfit
-#' @import survival
-#' @import survminer
-#' @import ggplot2
 #'
 
 multisurvivalClass <- if (requireNamespace('jmvcore')) R6::R6Class(
@@ -18,6 +10,30 @@ multisurvivalClass <- if (requireNamespace('jmvcore')) R6::R6Class(
     inherit = multisurvivalBase,
     private = list(
         .run = function() {
+
+
+            # # Error Message ----
+            #
+            # if (nrow(self$data) == 0) stop("Data contains no (complete) rows")
+            #
+            # if ( (is.null(self$options$vars) || is.null(self$options$facs)) && is.null(self$options$target) ) {
+            #     # ToDo Message ----
+            #     todo <- "
+            #         <br>Welcome to ClinicoPath
+            #                   <br><br>
+            #                   This tool will help you form an Alluvial Plots.
+            #                   "
+            #     html <- self$results$todo
+            #     html$setContent(todo)
+            #
+            # } else {
+            #     todo <- ""
+            #     html <- self$results$todo
+            #     html$setContent(todo)
+            #
+            #
+            #
+            # }
 
 
             # If no variable selected Initial Message ----
@@ -152,7 +168,7 @@ multisurvivalClass <- if (requireNamespace('jmvcore')) R6::R6Class(
             formulaR <- jmvcore::toNumeric(formulaR)
 
 
-            myformula <- paste("Surv(", formulaL, ",", formulaR, ")")
+            myformula <- paste("survival::Surv(", formulaL, ",", formulaR, ")")
 
 
             # https://finalfit.org/reference/hr_plot.html
@@ -212,7 +228,7 @@ multisurvivalClass <- if (requireNamespace('jmvcore')) R6::R6Class(
 
             formula2 <- jmvcore::constructFormula(terms = self$options$explanatory)
 
-            formula3 <- paste("Surv(", formulaL, ",", formulaR, ") ~ ", formula2)
+            formula3 <- paste("survival::Surv(", formulaL, ",", formulaR, ") ~ ", formula2)
 
             formula3 <- as.formula(formula3)
 

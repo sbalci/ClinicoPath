@@ -1,12 +1,12 @@
 ---
 title: Common Analysis for Clinicopathological Research
 name: ClinicoPath
-version: 0.0.2
+version: 0.0.2.0012
 jms: '1.0'
 authors:
   - Serdar Balci
 maintainer: Serdar Balci <drserdarbalci@gmail.com>
-date: '2020-05-14'
+date: '2020-06-09'
 type: R
 description: >-
   ClinicoPath help researchers to generate natural language summaries of their
@@ -16,59 +16,62 @@ analyses:
   - title: Table One
     name: tableone
     ns: ClinicoPath
-    menuGroup: ClinicoPath
-    menuSubgroup: Descriptives
+    menuGroup: Exploration
+    menuSubgroup: ClinicoPath Descriptives
     menuTitle: Table One
     description: Function for making Table One.
   - title: Summary of Continuous Variables
     name: summarydata
     ns: ClinicoPath
-    menuGroup: ClinicoPath
-    menuSubgroup: Descriptives
+    menuGroup: Exploration
+    menuSubgroup: ClinicoPath Descriptives
     menuTitle: Summary of Continuous Variables
     description: Function for Generating Summaries for Continuous Variables.
   - title: Summary of Categorical Variables
     name: reportcat
     ns: ClinicoPath
-    menuGroup: ClinicoPath
-    menuSubgroup: Descriptives
+    menuGroup: Exploration
+    menuSubgroup: ClinicoPath Descriptives
     menuTitle: Summary of Categorical Variables
     description: Function for Generating Summaries for Categorical Variables.
-  - title: CrossTables
+  - title: Cross Tables
     name: crosstable
     ns: ClinicoPath
     menuGroup: ClinicoPath
     menuSubgroup: Comparisons
-    menuTitle: CrossTables
+    menuTitle: Cross Tables
     description: Function for making Cross Tables.
   - title: Graphs and Plots
     name: statsplot2
     ns: ClinicoPath
-    menuGroup: ClinicoPath
-    menuSubgroup: Comparisons
+    menuGroup: JJStatsPlot
+    menuSubgroup: Variable Type Based Graphs and Plots
     menuTitle: Graphs and Plots
     description: Function for Generating Plots and Graphs Based on Variable Types.
   - title: Survival Analysis
     name: survival
     ns: ClinicoPath
-    menuGroup: ClinicoPath
-    menuSubgroup: Survival
+    menuGroup: Survival
+    menuSubgroup: ClinicoPath Survival
     menuTitle: Survival Analysis
     description: Function for Generating Summaries for Survival Analysis.
+    menuSubtitle: 'Univariate Survival Analysis, Cox, Kaplan-Meier, 1,3,5-yr'
   - title: Multivariate Survival Analysis
     name: multisurvival
     ns: ClinicoPath
-    menuGroup: ClinicoPath
-    menuSubgroup: Survival
+    menuGroup: Survival
+    menuSubgroup: ClinicoPath Survival
     menuTitle: Multivariate Survival Analysis
     description: Function for Multivariate Survival Analysis using Cox-regression.
+    menuSubtitle: Cox-regression
   - title: Odds Ratio Table and Plot
     name: oddsratio
     ns: ClinicoPath
-    menuGroup: ClinicoPath
-    menuSubgroup: Survival
+    menuGroup: Survival
+    menuSubgroup: ClinicoPath Survival
     menuTitle: Odds Ratio Table and Plot
     description: Function for Odds Ratio Table and Plot.
+    menuSubtitle: Odds Ratio for Binary Outcomes
   - title: Interrater Reliability
     name: agreement
     ns: ClinicoPath
@@ -92,6 +95,71 @@ analyses:
     menuSubgroup: Decision
     menuTitle: Decision Calculator
     description: Function for Medical Decision Calculator.
+  - title: Alluvial Diagrams
+    name: alluvial
+    ns: ClinicoPath
+    menuGroup: Exploration
+    menuSubgroup: ClinicoPath Descriptives
+    menuTitle: Alluvial Diagrams
+  - title: Bar Charts
+    name: jjbarstats
+    ns: ClinicoPath
+    menuGroup: JJStatsPlot
+    menuSubgroup: Categorical vs Categorical
+    menuTitle: Bar Charts
+    menuSubtitle: 'Bar Charts, Grouped Bar Charts'
+    description: |
+      'Wrapper Function for ggstatsplot::ggbarstats and
+      ggstatsplot::grouped_ggbarstats to generate Bar Charts.'
+  - title: Violin Plots to Compare Between Groups
+    name: jjbetweenstats
+    ns: ClinicoPath
+    menuGroup: JJStatsPlot
+    menuSubgroup: Categorical vs Numeric
+    menuTitle: Violin Plots to Compare Between Groups
+    menuSubtitle: Independent Samples
+  - title: Correlation Matrix
+    name: jjcorrmat
+    ns: ClinicoPath
+    menuGroup: JJStatsPlot
+    menuSubgroup: Continious vs Continious
+    menuTitle: Correlation Matrix
+    menuSubtitle: Correlation Matrix
+  - title: Dot Chart
+    name: jjdotplotstats
+    ns: ClinicoPath
+    menuGroup: JJStatsPlot
+    menuSubgroup: Categorical vs Numeric
+    menuTitle: Dot Chart
+    menuSubtitle: Dot Chart
+  - title: Histogram
+    name: jjhistostats
+    ns: ClinicoPath
+    menuGroup: JJStatsPlot
+    menuSubgroup: Continious
+    menuTitle: Histogram
+    menuSubtitle: Histogram
+  - title: Pie Charts
+    name: jjpiestats
+    ns: ClinicoPath
+    menuGroup: JJStatsPlot
+    menuSubgroup: Categorical vs Categorical
+    menuTitle: Pie Charts
+    menuSubtitle: Pie Charts
+  - title: Scatter Plot
+    name: jjscatterstats
+    ns: ClinicoPath
+    menuGroup: JJStatsPlot
+    menuSubgroup: Continious vs Continious
+    menuTitle: Scatter Plot
+    menuSubtitle: Scatter Plot
+  - title: Violin Plots to Compare Between Groups
+    name: jjwithinstats
+    ns: ClinicoPath
+    menuGroup: JJStatsPlot
+    menuSubgroup: Categorical vs Numeric
+    menuTitle: Violin Plots to Compare Between Groups
+    menuSubtitle: 'ggstatsplot::jjwithinstats'
 datasets:
   - name: histopathology including analysis
     path: histopathologyanalysis.omv
@@ -129,6 +197,6 @@ datasets:
     tags:
       - Classification
 usesNative: true
-minApp: 1.2.18
+minApp: 1.2.19
 
 ...

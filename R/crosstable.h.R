@@ -8,7 +8,8 @@ crosstableOptions <- if (requireNamespace('jmvcore')) R6::R6Class(
         initialize = function(
             vars = NULL,
             group = NULL,
-            style = "nejm.css", ...) {
+            sty = "nejm",
+            excl = TRUE, ...) {
 
             super$initialize(
                 package='ClinicoPath',
@@ -27,46 +28,97 @@ crosstableOptions <- if (requireNamespace('jmvcore')) R6::R6Class(
                     "nominal"),
                 permitted=list(
                     "factor"))
-            private$..style <- jmvcore::OptionList$new(
-                "style",
-                style,
+            private$..sty <- jmvcore::OptionList$new(
+                "sty",
+                sty,
                 options=list(
-                    "nejm.css",
-                    "lancet.css",
-                    "hmisc.css"),
-                default="nejm.css")
+                    "arsenal",
+                    "finalfit",
+                    "gtsummary",
+                    "nejm",
+                    "lancet",
+                    "hmisc"),
+                default="nejm")
+            private$..excl <- jmvcore::OptionBool$new(
+                "excl",
+                excl,
+                default=TRUE)
 
             self$.addOption(private$..vars)
             self$.addOption(private$..group)
-            self$.addOption(private$..style)
+            self$.addOption(private$..sty)
+            self$.addOption(private$..excl)
         }),
     active = list(
         vars = function() private$..vars$value,
         group = function() private$..group$value,
-        style = function() private$..style$value),
+        sty = function() private$..sty$value,
+        excl = function() private$..excl$value),
     private = list(
         ..vars = NA,
         ..group = NA,
-        ..style = NA)
+        ..sty = NA,
+        ..excl = NA)
 )
 
 crosstableResults <- if (requireNamespace('jmvcore')) R6::R6Class(
     inherit = jmvcore::Group,
     active = list(
-        text3 = function() private$.items[["text3"]]),
+        todo = function() private$.items[["todo"]],
+        tablestyle1 = function() private$.items[["tablestyle1"]],
+        tablestyle2 = function() private$.items[["tablestyle2"]],
+        tablestyle3 = function() private$.items[["tablestyle3"]],
+        tablestyle4 = function() private$.items[["tablestyle4"]]),
     private = list(),
     public=list(
         initialize=function(options) {
             super$initialize(
                 options=options,
                 name="",
-                title="CrossTable",
-                refs=list(
-                    "tangram"))
+                title="`Cross Table - ${group}`")
             self$add(jmvcore::Html$new(
                 options=options,
-                name="text3",
-                title="CrossTable Tangram NEJM"))}))
+                name="todo",
+                title="To Do",
+                clearWith=list(
+                    "vars",
+                    "group")))
+            self$add(jmvcore::Html$new(
+                options=options,
+                name="tablestyle1",
+                title="`Cross Table - ${group}`",
+                clearWith=list(
+                    "vars",
+                    "group"),
+                visible="(sty:arsenal)",
+                refs="arsenal"))
+            self$add(jmvcore::Html$new(
+                options=options,
+                name="tablestyle2",
+                title="`Cross Table - ${group}`",
+                clearWith=list(
+                    "vars",
+                    "group"),
+                visible="(sty:finalfit)",
+                refs="finalfit"))
+            self$add(jmvcore::Html$new(
+                options=options,
+                name="tablestyle3",
+                title="`Cross Table - ${group}`",
+                clearWith=list(
+                    "vars",
+                    "group"),
+                visible="(sty:gtsummary)",
+                refs="gtsummary"))
+            self$add(jmvcore::Html$new(
+                options=options,
+                name="tablestyle4",
+                title="`Cross Table - ${group}`",
+                clearWith=list(
+                    "vars",
+                    "group"),
+                visible="(sty:nejm || sty:lancet || sty:hmisc)",
+                refs="tangram"))}))
 
 crosstableBase <- if (requireNamespace('jmvcore')) R6::R6Class(
     "crosstableBase",
@@ -88,7 +140,7 @@ crosstableBase <- if (requireNamespace('jmvcore')) R6::R6Class(
                 requiresMissings = FALSE)
         }))
 
-#' CrossTables
+#' Cross Tables
 #'
 #' Function for making Cross Tables.
 #'
@@ -97,12 +149,17 @@ crosstableBase <- if (requireNamespace('jmvcore')) R6::R6Class(
 #' # example will be added
 #'}
 #' @param data The data as a data frame.
-#' @param vars .
+#' @param vars variable in the rows
 #' @param group variable in the column
-#' @param style .
+#' @param sty .
+#' @param excl .
 #' @return A results object containing:
 #' \tabular{llllll}{
-#'   \code{results$text3} \tab \tab \tab \tab \tab a html \cr
+#'   \code{results$todo} \tab \tab \tab \tab \tab a html \cr
+#'   \code{results$tablestyle1} \tab \tab \tab \tab \tab a html \cr
+#'   \code{results$tablestyle2} \tab \tab \tab \tab \tab a html \cr
+#'   \code{results$tablestyle3} \tab \tab \tab \tab \tab a html \cr
+#'   \code{results$tablestyle4} \tab \tab \tab \tab \tab a html \cr
 #' }
 #'
 #' @export
@@ -110,7 +167,8 @@ crosstable <- function(
     data,
     vars,
     group,
-    style = "nejm.css") {
+    sty = "nejm",
+    excl = TRUE) {
 
     if ( ! requireNamespace('jmvcore'))
         stop('crosstable requires jmvcore to be installed (restart may be required)')
@@ -128,7 +186,8 @@ crosstable <- function(
     options <- crosstableOptions$new(
         vars = vars,
         group = group,
-        style = style)
+        sty = sty,
+        excl = excl)
 
     analysis <- crosstableClass$new(
         options = options,
