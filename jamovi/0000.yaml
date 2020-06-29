@@ -1,12 +1,12 @@
 ---
 title: Common Analysis for Clinicopathological Research
 name: ClinicoPath
-version: 0.0.2.0012
+version: 0.0.2.0015
 jms: '1.0'
 authors:
   - Serdar Balci
 maintainer: Serdar Balci <drserdarbalci@gmail.com>
-date: '2020-06-09'
+date: '2020-06-28'
 type: R
 description: >-
   ClinicoPath help researchers to generate natural language summaries of their
@@ -41,13 +41,6 @@ analyses:
     menuSubgroup: Comparisons
     menuTitle: Cross Tables
     description: Function for making Cross Tables.
-  - title: Graphs and Plots
-    name: statsplot2
-    ns: ClinicoPath
-    menuGroup: JJStatsPlot
-    menuSubgroup: Variable Type Based Graphs and Plots
-    menuTitle: Graphs and Plots
-    description: Function for Generating Plots and Graphs Based on Variable Types.
   - title: Survival Analysis
     name: survival
     ns: ClinicoPath
@@ -88,6 +81,7 @@ analyses:
     description: >
       Function for Medical Decision Analysis. Sensitivity, specificity, positive
       predictive value, negative predictive value.
+    menuSubtitle: 'Sensitivity, Specificity, PPV, NPV, ...'
   - title: Decision Calculator
     name: decisioncalculator
     ns: ClinicoPath
@@ -95,71 +89,13 @@ analyses:
     menuSubgroup: Decision
     menuTitle: Decision Calculator
     description: Function for Medical Decision Calculator.
+    menuSubtitle: 'Sensitivity, Specificity, PPV, NPV, ...'
   - title: Alluvial Diagrams
     name: alluvial
     ns: ClinicoPath
     menuGroup: Exploration
     menuSubgroup: ClinicoPath Descriptives
     menuTitle: Alluvial Diagrams
-  - title: Bar Charts
-    name: jjbarstats
-    ns: ClinicoPath
-    menuGroup: JJStatsPlot
-    menuSubgroup: Categorical vs Categorical
-    menuTitle: Bar Charts
-    menuSubtitle: 'Bar Charts, Grouped Bar Charts'
-    description: |
-      'Wrapper Function for ggstatsplot::ggbarstats and
-      ggstatsplot::grouped_ggbarstats to generate Bar Charts.'
-  - title: Violin Plots to Compare Between Groups
-    name: jjbetweenstats
-    ns: ClinicoPath
-    menuGroup: JJStatsPlot
-    menuSubgroup: Categorical vs Numeric
-    menuTitle: Violin Plots to Compare Between Groups
-    menuSubtitle: Independent Samples
-  - title: Correlation Matrix
-    name: jjcorrmat
-    ns: ClinicoPath
-    menuGroup: JJStatsPlot
-    menuSubgroup: Continious vs Continious
-    menuTitle: Correlation Matrix
-    menuSubtitle: Correlation Matrix
-  - title: Dot Chart
-    name: jjdotplotstats
-    ns: ClinicoPath
-    menuGroup: JJStatsPlot
-    menuSubgroup: Categorical vs Numeric
-    menuTitle: Dot Chart
-    menuSubtitle: Dot Chart
-  - title: Histogram
-    name: jjhistostats
-    ns: ClinicoPath
-    menuGroup: JJStatsPlot
-    menuSubgroup: Continious
-    menuTitle: Histogram
-    menuSubtitle: Histogram
-  - title: Pie Charts
-    name: jjpiestats
-    ns: ClinicoPath
-    menuGroup: JJStatsPlot
-    menuSubgroup: Categorical vs Categorical
-    menuTitle: Pie Charts
-    menuSubtitle: Pie Charts
-  - title: Scatter Plot
-    name: jjscatterstats
-    ns: ClinicoPath
-    menuGroup: JJStatsPlot
-    menuSubgroup: Continious vs Continious
-    menuTitle: Scatter Plot
-    menuSubtitle: Scatter Plot
-  - title: Violin Plots to Compare Between Groups
-    name: jjwithinstats
-    ns: ClinicoPath
-    menuGroup: JJStatsPlot
-    menuSubgroup: Categorical vs Numeric
-    menuTitle: Violin Plots to Compare Between Groups
-    menuSubtitle: 'ggstatsplot::jjwithinstats'
 datasets:
   - name: histopathology including analysis
     path: histopathologyanalysis.omv

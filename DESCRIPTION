@@ -1,8 +1,8 @@
 Type: Package
 Package: ClinicoPath
 Title: Analysis for Clinicopathological Research
-Version: 0.0.2.0012
-Date: 2020-06-09
+Version: 0.0.2.0015
+Date: 2020-06-28
 Authors@R: 
     person(given = "Serdar",
            family = "Balci",
@@ -25,10 +25,11 @@ Depends:
     R (>= 3.6.0)
 Imports: 
     dplyr,
+    magrittr,
     finalfit,
-    ggalluvial,
     ggplot2,
     ggstatsplot,
+    easyalluvial,
     glue,
     janitor,
     jmvcore,
@@ -44,17 +45,12 @@ Imports:
     kableExtra,
     irr,
     caret,
-    gtsummary,
-    arsenal
+    gtsummary
 Remotes:
     spgarbet/tangram,
-    easystats/insight,
-    easystats/bayestestR,
-    easystats/parameters,
-    easystats/modelbased,
-    easystats/effectsize,
+    mayoverse/arsenal,
     easystats/report
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.1.0
+RoxygenNote: 7.1.0.9000

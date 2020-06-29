@@ -67,7 +67,6 @@ tableoneClass <- if (requireNamespace("jmvcore")) R6::R6Class("tableoneClass",
 
             if (sty == "t1") {
 
-
             mytable <- tableone::CreateTableOne(data = data)
 
             self$results$tablestyle1$setContent(mytable)
