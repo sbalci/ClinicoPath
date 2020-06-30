@@ -46,6 +46,8 @@ Imports:
     irr,
     caret,
     gtsummary
+Suggests:
+    modelbased
 Remotes:
     spgarbet/tangram,
     mayoverse/arsenal,
