@@ -1,8 +1,8 @@
 Type: Package
 Package: ClinicoPath
 Title: Analysis for Clinicopathological Research
-Version: 0.0.2.0015
-Date: 2020-06-28
+Version: 0.0.2.0019
+Date: 2020-07-04
 Authors@R: 
     person(given = "Serdar",
            family = "Balci",
@@ -46,12 +46,9 @@ Imports:
     irr,
     caret,
     gtsummary
-Suggests:
-    modelbased
 Remotes:
     spgarbet/tangram,
-    mayoverse/arsenal,
-    easystats/report
+    mayoverse/arsenal
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
