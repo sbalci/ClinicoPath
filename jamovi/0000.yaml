@@ -37,8 +37,8 @@ analyses:
   - title: Cross Tables
     name: crosstable
     ns: ClinicoPath
-    menuGroup: ClinicoPath
-    menuSubgroup: Comparisons
+    menuGroup: Exploration
+    menuSubgroup: ClinicoPath Comparisons
     menuTitle: Cross Tables
     description: Function for making Cross Tables.
   - title: Survival Analysis
@@ -68,14 +68,14 @@ analyses:
   - title: Interrater Reliability
     name: agreement
     ns: ClinicoPath
-    menuGroup: ClinicoPath
+    menuGroup: meddecide
     menuSubgroup: Agreement
     menuTitle: Interrater Reliability
     description: Function for Interrater Reliability.
   - title: Medical Decision
     name: decision
     ns: ClinicoPath
-    menuGroup: ClinicoPath
+    menuGroup: meddecide
     menuSubgroup: Decision
     menuTitle: Medical Decision
     description: >
@@ -85,7 +85,7 @@ analyses:
   - title: Decision Calculator
     name: decisioncalculator
     ns: ClinicoPath
-    menuGroup: ClinicoPath
+    menuGroup: meddecide
     menuSubgroup: Decision
     menuTitle: Decision Calculator
     description: Function for Medical Decision Calculator.
